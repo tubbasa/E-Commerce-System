@@ -1,0 +1,39 @@
+﻿@model Core.Northwind.MvcWebUI.Models.ProductUpdateViewModel
+
+
+@{
+    Layout = "~/Views/_AdminLayout.cshtml";
+
+}
+
+<h2>Update a product</h2>
+
+<form asp-controller="Admin" asp-action="Update" method="post">
+    <div class="form-group">
+        <label asp-for="Product.ProductName"></label>
+        <input asp-for="Product.ProductName" class="form-control" placeholder="@Model.Product.ProductName" />
+        <span asp-validation-for="Product.ProductName"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Product.CategoryId"></label>
+        <select asp-for="Product.CategoryId" class="form-control" asp-items="@(new SelectList(Model.Categories,"CategoryId","CategoryName"))"></select>
+        <span asp-validation-for="Product.CategoryId"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Product.UnitPrice"></label>
+        <input asp-for="Product.UnitPrice" class="form-control" placeholder="Product UnitPrice" />
+        <span asp-validation-for="Product.UnitPrice"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Product.UnitsInStock"></label>
+        <input asp-for="Product.UnitsInStock" class="form-control" placeholder="Product UnitsInStock" />
+        <span asp-validation-for="Product.UnitsInStock"></span>
+    </div>
+
+    <input type="hidden" asp-for="@Model.Product.ProductId"/>
+    <input type="submit" value="Add" class="btn btn-xs btn-success" />
+
+</form>
